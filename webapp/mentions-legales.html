@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales - 2027 & Moi</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body class="bg-gray-50 text-gray-800 font-inter antialiased">
+    
+    <!-- Navigation / Header -->
+    <nav class="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-[1000]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.href='index.html'">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg mr-3 shadow-md">27</div>
+                    <span class="font-bold text-xl tracking-tight text-gray-900">2027 & Moi</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex sm:items-center sm:space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+                        <i class="fa-solid fa-arrow-left mr-2"></i>Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-8">Mentions Légales</h1>
+            
+            <div class="space-y-8">
+                <section>
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fa-solid fa-globe text-blue-600 mr-3"></i>Éditeur du site
+                    </h2>
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <p class="text-gray-700 mb-2"><strong>Site :</strong> 2027 & Moi - Boussole Présidentielle</p>
+                        <p class="text-gray-700 mb-2"><strong>Propriétaire :</strong> Arieh</p>
+                        <p class="text-gray-700 mb-2"><strong>Contact :</strong> arieh.data@gmail.com</p>
+                        <p class="text-gray-700"><strong>Objet :</strong> Application web d'information politique et de comparaison de programmes présidentiels</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fa-solid fa-server text-blue-600 mr-3"></i>Hébergement
+                    </h2>
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <p class="text-gray-700 mb-2"><strong>Prestataire :</strong> À définir selon l'hébergement choisi</p>
+                        <p class="text-gray-700"><strong>Localisation :</strong> Serveurs situés en France (conformité RGPD)</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fa-solid fa-database text-blue-600 mr-3"></i>Sources des données
+                    </h2>
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <div class="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                            <p class="text-blue-900 text-sm">
+                                <i class="fa-solid fa-calendar-check mr-2"></i>
+                                <strong>Dernière mise à jour :</strong> 2 octobre 2026
+                            </p>
+                        </div>
+                        <p class="text-gray-700 mb-4">Les données présentées sur ce site proviennent de sources officielles et publiques :</p>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1"></i>
+                                <span><strong>data.gouv.fr :</strong> Plateforme open data du gouvernement français</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1"></i>
+                                <span><strong>Votes au parlement :</strong> <a href="https://www.data.gouv.fr/datasets/votes-au-parlement-des-candidats-a-lelection-presidentielle-2027" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">Dataset officiel</a></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1"></i>
+                                <span><strong>Prises de parole :</strong> <a href="https://www.data.gouv.fr/datasets/prises-de-parole-des-candidats-a-lelection-presidentielle-2027" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">Dataset officiel</a></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-500 mr-3 mt-1"></i>
+                                <span><strong>Sites officiels des candidats :</strong> Programmes et déclarations publiées</span>
+                            </li>
+                        </ul>
+                        <p class="text-gray-600 text-sm mt-4 italic">Ces données sont compilées et présentées à titre informatif uniquement. Le site ne garantit pas l'exhaustivité ni l'actualité en temps réel des informations.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fa-solid fa-balance-scale text-blue-600 mr-3"></i>Propriété intellectuelle
+                    </h2>
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <p class="text-gray-700 mb-4">L'ensemble du contenu de ce site (textes, images, design, code) est protégé par le droit d'auteur.</p>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-info text-blue-500 mr-3 mt-1"></i>
+                                <span>Toute reproduction, même partielle, est interdite sans autorisation préalable.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-info text-blue-500 mr-3 mt-1"></i>
+                                <span>Les noms des candidats et partis politiques sont des marques déposées par leurs propriétaires respectifs.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-info text-blue-500 mr-3 mt-1"></i>
+                                <span>Les données officielles (votes, programmes) sont dans le domaine public.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fa-solid fa-shield-halved text-blue-600 mr-3"></i>Protection des données personnelles
+                    </h2>
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <p class="text-gray-700 mb-4">Ce site respecte la réglementation européenne sur la protection des données (RGPD).</p>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-info text-blue-500 mr-3 mt-1"></i>
+                                <span>Aucune donnée personnelle n'est collectée sans consentement explicite.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-info text-blue-500 mr-3 mt-1"></i>
+                                <span>Les résultats du quiz sont calculés localement dans le navigateur de l'utilisateur.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-info text-blue-500 mr-3 mt-1"></i>
+                                <span>Aucun cookie de tracking n'est utilisé.</span>
+                            </li>
+                        </ul>
+                        <p class="text-gray-600 text-sm mt-4">Pour plus d'informations, consultez notre <a href="politique-confidentialite.html" class="text-blue-600 hover:text-blue-800 font-medium">Politique de confidentialité</a>.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fa-solid fa-scale-unbalanced text-blue-600 mr-3"></i>Responsabilité
+                    </h2>
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <p class="text-gray-700 mb-4">Ce site est fourni à titre informatif uniquement.</p>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-info text-blue-500 mr-3 mt-1"></i>
+                                <span>Les résultats du quiz sont basés sur les positions publiées des candidats et ne constituent pas une recommandation de vote.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-info text-blue-500 mr-3 mt-1"></i>
+                                <span>L'éditeur ne saurait être tenu responsable des erreurs ou omissions dans les données présentées.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-info text-blue-500 mr-3 mt-1"></i>
+                                <span>Les liens vers des sites externes n'engagent pas la responsabilité de l'éditeur.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
+                <p>Dernière mise à jour : Octobre 2026</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2026 2027 & Moi. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>

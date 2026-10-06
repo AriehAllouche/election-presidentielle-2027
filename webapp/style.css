@@ -1,0 +1,230 @@
+/* Configuration Typographique (Inter) */
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Animations d'apparition */
+.fade-in {
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal Animations */
+#candidat-modal.show {
+    opacity: 1;
+}
+#candidat-modal.show #candidat-modal-card {
+    transform: scale(1);
+}
+#lexique-card.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Navigation Buttons (Desktop) */
+.nav-btn {
+    color: #4b5563; /* text-gray-600 */
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+.nav-btn:hover {
+    color: #111827;
+    background-color: #f3f4f6; /* bg-gray-100 */
+}
+.nav-btn.active {
+    color: #2563eb; /* text-blue-600 */
+    background-color: #eff6ff; /* bg-blue-50 */
+    font-weight: 600;
+}
+
+/* Mobile Nav Buttons */
+.mobile-nav-btn {
+    color: #4b5563;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+.mobile-nav-btn:hover {
+    background-color: #f3f4f6;
+}
+.mobile-nav-btn.active {
+    color: #2563eb;
+    background-color: #eff6ff;
+    font-weight: 600;
+}
+
+/* Filter Buttons */
+.filter-btn {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+.filter-btn:not(.active) {
+    background-color: white;
+    color: #6b7280;
+    border-color: #e5e7eb;
+}
+.filter-btn:hover:not(.active) {
+    border-color: #d1d5db;
+    background-color: #f9fafb;
+}
+
+/* The active states of family filters are set by JS classes, 
+   but for 'Tous' or 'Statut': */
+.filter-btn.active {
+    background-color: #1f2937;
+    color: white;
+    border-color: #1f2937;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Sidebar Themes Menu */
+.theme-menu-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #4b5563;
+    transition: all 0.2s;
+    text-align: left;
+}
+.theme-menu-btn:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+.theme-menu-btn.active {
+    background-color: #eff6ff;
+    color: #2563eb;
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 #2563eb;
+}
+
+/* Candidate Cards (Grid) */
+.candidat-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid #f3f4f6;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.candidat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #e5e7eb;
+}
+
+.candidat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--card-color, #e5e7eb);
+}
+
+/* SortableJS Quiz Items */
+.sortable-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.sortable-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    cursor: grab;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.sortable-item:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+.sortable-item:active {
+    cursor: grabbing;
+    transform: scale(0.99);
+}
+.sortable-item.sortable-ghost {
+    opacity: 0.3;
+    background-color: #f8fafc;
+    border: 2px dashed #cbd5e1;
+}
+.sortable-handle {
+    margin-right: 1rem;
+    color: #94a3b8;
+    cursor: grab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+}
+.sortable-item:hover .sortable-handle {
+    color: #475569;
+    background: #f1f5f9;
+}
+
+/* Badges Statut Colors */
+.badge-declare { background-color: #dcfce7; color: #166534; border: 1px solid #bbf7d0; } /* Vert */
+.badge-primaire { background-color: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; } /* Bleu */
+.badge-pressenti { background-color: #ffedd5; color: #9a3412; border: 1px solid #fed7aa; } /* Orange */
+.badge-renonce { background-color: #f3f4f6; color: #4b5563; border: 1px solid #e5e7eb; } /* Gris */
+
+/* Lexique Link */
+.lexique-link {
+    color: #2563eb;
+    text-decoration: none;
+    border-bottom: 1px dashed #93c5fd;
+    cursor: help;
+    font-weight: 500;
+    transition: all 0.2s;
+    padding: 0 0.1rem;
+}
+.lexique-link:hover {
+    color: #1d4ed8;
+    border-bottom-color: #1d4ed8;
+    background-color: #eff6ff;
+    border-radius: 2px;
+}
+
+/* Custom Scrollbar for Modal */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1; 
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8; 
+}

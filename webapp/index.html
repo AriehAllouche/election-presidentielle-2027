@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2027 & Moi - Boussole Présidentielle | Découvrez votre profil politique</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="Découvrez quel candidat de 2027 correspond le mieux à vos idées grâce à notre boussole présidentielle interactive. Quiz politique, comparaison de programmes, analyse détaillée des candidats.">
+    <meta name="keywords" content="présidentielle 2027, quiz politique, boussole présidentielle, candidats, élections, France, vote, programme politique">
+    <meta name="author" content="2027 & Moi">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://2027etmoi.fr/">
+    <meta property="og:title" content="2027 & Moi - Boussole Présidentielle">
+    <meta property="og:description" content="Découvrez quel candidat de 2027 correspond le mieux à vos idées grâce à notre boussole présidentielle interactive. Quiz politique, comparaison de programmes, analyse détaillée.">
+    <meta property="og:image" content="https://2027etmoi.fr/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="2027 & Moi">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2027 & Moi - Boussole Présidentielle">
+    <meta name="twitter:description" content="Découvrez quel candidat de 2027 correspond le mieux à vos idées grâce à notre boussole présidentielle interactive.">
+    <meta name="twitter:image" content="https://2027etmoi.fr/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- SortableJS pour le Drag & Drop -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <!-- Chart.js pour le graphique Radar -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-inter antialiased">
+    
+    <!-- Loader -->
+    <div id="loader" class="fixed inset-0 bg-white z-[9999] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-2xl mx-auto mb-4 shadow-lg animate-pulse">27</div>
+            <div class="text-gray-600 font-medium">Chargement...</div>
+        </div>
+    </div>
+
+    <!-- Navigation / Header -->
+    <nav class="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-[1000] transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="showSection('carto')" role="button" aria-label="Retour à l'accueil">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg mr-3 shadow-md">27</div>
+                    <span class="font-bold text-xl tracking-tight text-gray-900">2027 & Moi</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex sm:items-center sm:space-x-8" role="navigation" aria-label="Navigation principale">
+                    <button id="btn-cartographie" class="nav-btn active" aria-current="page">
+                        <i class="fa-solid fa-map-location-dot mr-2"></i>Cartographie
+                    </button>
+                    <button id="btn-themes" class="nav-btn">
+                        <i class="fa-solid fa-layer-group mr-2"></i>Thèmes
+                    </button>
+                    <button id="btn-quiz" class="nav-btn">
+                        <i class="fa-solid fa-clipboard-question mr-2"></i>Quiz
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-gray-900 focus:outline-none p-2 rounded-md">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-b border-gray-200 px-2 pt-2 pb-3 space-y-1 shadow-lg absolute w-full left-0">
+            <button id="btn-cartographie-mob" class="mobile-nav-btn active w-full text-left px-3 py-2 rounded-md">
+                <i class="fa-solid fa-map-location-dot mr-2 w-5"></i>Cartographie
+            </button>
+            <button id="btn-themes-mob" class="mobile-nav-btn w-full text-left px-3 py-2 rounded-md">
+                <i class="fa-solid fa-layer-group mr-2 w-5"></i>Thèmes
+            </button>
+            <button id="btn-quiz-mob" class="mobile-nav-btn w-full text-left px-3 py-2 rounded-md">
+                <i class="fa-solid fa-compass mr-2 w-5"></i>Quiz d'Orientation
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
+        
+        <!-- SECTION 1: CARTOGRAPHIE -->
+        <section id="section-cartographie" class="fade-in">
+            <div class="mb-8 text-center max-w-3xl mx-auto">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">L'Échiquier Politique 2027</h1>
+                <p class="text-lg text-gray-600">Découvrez et filtrez les personnalités politiques, leurs statuts et leurs propositions sourcées.</p>
+            </div>
+
+            <!-- Filtres et Recherche -->
+            <div class="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100 mb-8 z-10 relative">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <!-- Recherche textuelle -->
+                    <div class="relative flex-grow md:max-w-md">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-search text-gray-400"></i>
+                        </div>
+                        <input type="text" id="search-input" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-gray-50 placeholder-gray-500 focus:outline-none focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors sm:text-sm" placeholder="Rechercher un candidat, un parti...">
+                    </div>
+                    
+                    <!-- Filtres Statut -->
+                    <div class="flex flex-wrap gap-2 items-center">
+                        <span class="text-sm font-semibold text-gray-500 mr-1"><i class="fa-solid fa-filter mr-1"></i>Statut :</span>
+                        <button class="filter-btn filter-statut active" data-statut="all">Tous</button>
+                        <button class="filter-btn filter-statut" data-statut="declare">Déclarés</button>
+                        <button class="filter-btn filter-statut" data-statut="primaire">Primaire</button>
+                        <button class="filter-btn filter-statut" data-statut="pressenti">Pressentis</button>
+                    </div>
+                </div>
+                
+                <!-- Filtres Famille Politique -->
+                <div class="mt-4 pt-4 border-t border-gray-100 flex flex-wrap gap-2 items-center">
+                    <span class="text-sm font-semibold text-gray-500 mr-1"><i class="fa-solid fa-landmark mr-1"></i>Famille :</span>
+                    <button class="filter-btn filter-bloc active" data-bloc="all">Toutes</button>
+                    <button class="filter-btn filter-bloc text-red-700 bg-red-50 hover:bg-red-100" data-bloc="extgauche">Extrême Gauche</button>
+                    <button class="filter-btn filter-bloc text-rose-700 bg-rose-50 hover:bg-rose-100" data-bloc="gauche">Gauche</button>
+                    <button class="filter-btn filter-bloc text-green-700 bg-green-50 hover:bg-green-100" data-bloc="ecolo">Écologistes</button>
+                    <button class="filter-btn filter-bloc text-purple-700 bg-purple-50 hover:bg-purple-100" data-bloc="centre">Centre</button>
+                    <button class="filter-btn filter-bloc text-blue-700 bg-blue-50 hover:bg-blue-100" data-bloc="droite">Droite</button>
+                    <button class="filter-btn filter-bloc text-gray-900 bg-gray-200 hover:bg-gray-300" data-bloc="extdroite">Extrême Droite</button>
+                </div>
+            </div>
+
+            <!-- Grille des candidats -->
+            <div id="blocs-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Généré dynamiquement en JS -->
+            </div>
+
+            <!-- Barre de comparaison (flottante) -->
+            <div id="comparison-bar" class="hidden fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl shadow-2xl border-2 border-blue-500 p-4 z-40 max-w-2xl w-full mx-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm font-bold text-gray-700"><i class="fa-solid fa-scale-balanced text-blue-600 mr-2"></i>Comparaison :</span>
+                        <div id="comparison-selected" class="flex gap-2">
+                            <!-- Candidats sélectionnés -->
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="clearComparison()" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                            <i class="fa-solid fa-xmark mr-1"></i>Effacer
+                        </button>
+                        <button onclick="showComparisonModal()" class="px-4 py-2 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+                            <i class="fa-solid fa-eye mr-1"></i>Comparer
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Message si aucun résultat -->
+            <div id="no-results" class="hidden text-center py-12">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+                    <i class="fa-solid fa-ghost text-2xl text-gray-400"></i>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900">Aucun candidat ne correspond à vos filtres</h3>
+                <p class="mt-1 text-gray-500">Essayez de modifier votre recherche ou d'élargir vos filtres.</p>
+                <button onclick="resetFilters()" class="mt-4 text-blue-600 hover:text-blue-800 font-medium transition-colors">Réinitialiser les filtres</button>
+            </div>
+
+            <!-- Accordéon candidats sans données -->
+            <div id="ghost-candidates-section" class="hidden mt-8">
+                <button onclick="toggleGhostCandidates()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center">
+                    <i class="fa-solid fa-users-slash mr-2"></i>
+                    <span id="ghost-toggle-text">Voir les profils non documentés</span>
+                    <i id="ghost-chevron" class="fa-solid fa-chevron-down ml-2 transition-transform"></i>
+                </button>
+                <div id="ghost-candidates-container" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-4">
+                    <!-- Candidats fantômes générés dynamiquement -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: THEMES (Nouvelle section) -->
+        <section id="section-themes" class="hidden fade-in">
+            <div class="mb-8 text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Comparateur par Thèmes</h2>
+                <p class="text-lg text-gray-600">Découvrez les propositions et prises de parole classées par grands enjeux sociétaux.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar des Thèmes -->
+                <div class="lg:w-1/4">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sticky top-24">
+                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-2">Sujets</h3>
+                        <div id="themes-menu" class="space-y-1">
+                            <!-- Menu thèmes généré dynamiquement -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenu du Thème Sélectionné -->
+                <div class="lg:w-3/4">
+                    <div id="theme-content" class="space-y-6">
+                        <!-- Comparaison générée dynamiquement -->
+                        <div class="text-center py-20 text-gray-500">
+                            <i class="fa-solid fa-spinner fa-spin text-3xl mb-3"></i><br>Analyse des données...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: QUIZ -->
+        <section id="section-quiz" class="hidden fade-in">
+            <div class="mb-10 text-center max-w-3xl mx-auto">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4 shadow-inner">
+                    <i class="fa-solid fa-compass text-3xl"></i>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">La Boussole 2027</h2>
+                <p class="text-lg text-gray-600">Classez ces propositions selon vos convictions pour découvrir la famille politique ou le candidat qui s'en rapproche le plus.</p>
+            </div>
+
+            <div id="quiz-container" class="max-w-4xl mx-auto">
+                <!-- Contenu du quiz généré dynamiquement -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Détails Candidat (CORRIGÉ UX) -->
+    <div id="candidat-modal" class="fixed inset-0 z-[900] hidden">
+        <!-- Fond assombri cliquable pour fermer -->
+        <div id="candidat-backdrop" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm transition-opacity opacity-0 duration-300 cursor-pointer"></div>
+        
+        <!-- Conteneur centré -->
+        <div class="fixed inset-0 flex items-center justify-center p-2 sm:p-4 md:p-6 pointer-events-none">
+            
+            <!-- Carte de la Modale -->
+            <div id="candidat-modal-card" class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl flex flex-col overflow-hidden transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto" style="max-height: 90vh;">
+                
+                <!-- Header Fixe -->
+                <div class="relative px-4 sm:px-6 py-4 flex items-center justify-between flex-shrink-0 z-20 shadow-sm" id="modal-header-bg">
+                    <div class="flex items-center overflow-hidden">
+                        <div id="modal-avatar" class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 shadow-sm border-2 border-white/30">
+                        </div>
+                        <div class="truncate pr-4">
+                            <h3 id="modal-candidat-nom" class="text-xl sm:text-2xl font-extrabold text-gray-900 leading-tight truncate">Nom</h3>
+                            <p id="modal-candidat-parti" class="text-sm font-medium text-gray-800 opacity-90 truncate">Parti</p>
+                        </div>
+                    </div>
+                    <!-- Bouton Fermer -->
+                    <button id="close-modal" class="flex-shrink-0 bg-white/20 hover:bg-white/40 text-gray-900 rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-white">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Contenu Scrollable (min-h-0 est le fix crucial pour flexbox) -->
+                <div class="flex-1 overflow-y-auto min-h-0 bg-gray-50/50" id="modal-candidat-content">
+                    <!-- Contenu généré en JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lexique Modal Popover (CORRIGÉ UX) -->
+    <div id="lexique-modal" class="fixed inset-0 z-[950] hidden">
+        <div id="lexique-backdrop" class="fixed inset-0 bg-transparent transition-opacity opacity-0 duration-200 cursor-pointer"></div>
+        <div class="fixed inset-0 flex items-center justify-center p-4 pointer-events-none">
+            <div id="lexique-card" class="bg-gray-900 text-white rounded-xl shadow-2xl max-w-sm w-full flex flex-col overflow-hidden pointer-events-auto transform transition-all translate-y-4 opacity-0" style="max-height: 80vh;">
+                <div class="px-4 py-3 border-b border-gray-700 flex justify-between items-center flex-shrink-0">
+                    <h3 class="font-bold text-sm uppercase tracking-wider text-blue-300"><i class="fa-solid fa-book-open mr-2"></i>Définition</h3>
+                    <button id="close-lexique" class="text-gray-400 hover:text-white transition-colors p-1">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+                <div class="p-5 text-sm leading-relaxed text-gray-200 flex-1 overflow-y-auto min-h-0" id="lexique-content">
+                    <!-- Contenu -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Comparaison Face à Face -->
+    <div id="comparison-modal" class="fixed inset-0 z-[920] hidden">
+        <div id="comparison-backdrop" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm transition-opacity opacity-0 duration-300 cursor-pointer"></div>
+        <div class="fixed inset-0 flex items-center justify-center p-2 sm:p-4 md:p-6 pointer-events-none">
+            <div id="comparison-modal-card" class="bg-white rounded-2xl shadow-2xl w-full max-w-6xl flex flex-col overflow-hidden transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto" style="max-height: 90vh;">
+                <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between flex-shrink-0 bg-gray-50">
+                    <h3 class="text-xl font-bold text-gray-900"><i class="fa-solid fa-scale-balanced text-blue-600 mr-2"></i>Comparaison Face à Face</h3>
+                    <button id="close-comparison" class="bg-white hover:bg-gray-100 text-gray-700 rounded-full w-10 h-10 flex items-center justify-center transition-colors shadow-sm border border-gray-200">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+                <div class="flex-1 overflow-y-auto min-h-0 p-6" id="comparison-content">
+                    <!-- Contenu généré dynamiquement -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg mr-3">27</div>
+                        <span class="font-bold text-xl text-white">2027 & Moi</span>
+                    </div>
+                    <p class="text-sm">La boussole présidentielle interactive pour découvrir quel candidat correspond le mieux à vos idées.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">À propos</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="mentions-legales.html" class="hover:text-white transition-colors">Mentions légales</a></li>
+                        <li><a href="politique-confidentialite.html" class="hover:text-white transition-colors">Politique de confidentialité</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Sources</h4>
+                    <p class="text-sm">Données basées sur les déclarations officielles, programmes publiés et votes parlementaires (Assemblée nationale, Sénat).</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2026 2027 & Moi. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Data & Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Masquer le loader quand la page est chargée
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                loader.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
